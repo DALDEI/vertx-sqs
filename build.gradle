@@ -1,7 +1,7 @@
 description "Collokia's Vertx-SQS Integration"
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.13'
+    gradleVersion = '2.9'
 }
 
 buildscript {
