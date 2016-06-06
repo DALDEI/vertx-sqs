@@ -26,6 +26,7 @@ apply plugin: 'kotlin'
 apply plugin: 'idea'
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
+apply plugin: "maven"
 
 if (!JavaVersion.current().java8Compatible) {
     throw new IllegalStateException('''A Haiku:
@@ -111,21 +112,4 @@ compileJava {
             "-processor", "io.vertx.codegen.CodeGenProcessor"
     ]
     classpath += configurations.annotationProcessor
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.java
-        }
-    }
-    repositories {
-        maven {
-            url "https://collokia.artifactoryonline.com/collokia/collokia-internal"
-            credentials {
-                username "${collokiaRepoUser}"
-                password "${collokiaRepoPass}"
-            }
-        }
-    }
 }
