@@ -13,12 +13,15 @@ interface SqsVerticle {
     val client: SqsClient
     var credentialsProvider: AWSCredentialsProvider?
 
-    fun deleteMessage(queueUrl: String, reciept: String) {
+    fun deleteMessage(queueUrl: String, reciept: String)
+    /*
+    {
         client.deleteMessage(queueUrl, reciept) {
             if (it.failed()) {
                 log.warn("Unable to acknowledge message deletion with receipt = $reciept")
             }
         }
     }
+    */
 
 }

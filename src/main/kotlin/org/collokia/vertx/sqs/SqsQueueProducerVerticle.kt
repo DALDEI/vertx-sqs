@@ -10,8 +10,15 @@ import org.collokia.vertx.sqs.impl.SqsClientImpl
 import kotlin.properties.Delegates
 
 class SqsQueueProducerVerticle() : AbstractVerticle(), SqsVerticle {
-
-    constructor(credentialsProvider: AWSCredentialsProvider) : this() {
+  override fun deleteMessage(queueUrl: String, reciept: String)
+  {
+      client.deleteMessage(queueUrl, reciept) {
+          if (it.failed()) {
+              log.warn("Unable to acknowledge message deletion with receipt = $reciept")
+          }
+      }
+  }
+  constructor(credentialsProvider: AWSCredentialsProvider) : this() {
         this.credentialsProvider = credentialsProvider
     }
     override var credentialsProvider: AWSCredentialsProvider? = null
